@@ -1,27 +1,55 @@
-# Login
+# Angular-Login
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
+This project implements a simple web app with Home and Log-in views. 
 
-## Development server
+<a href="https://josehervas.github.io/Angular-Login/">LIVE PREVIEW</a>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+<img src="preview.PNG" height=300>
 
-## Code scaffolding
+# Architecture
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The project has 2 components (one for each view), 2 services (one for making the HTTP calls and other for managing user data), 2 routes and one auth guard.
 
-## Build
+- ## Component tree
+```
+AppComponent
+    |
+    |___ RouterOutlet
+            |
+            |___ HomeComponent
+            |
+            |___ LoginComponent
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- ## Services
 
-## Running unit tests
+    - ApiService: makes HTTP calls
+    - UserService: manages user's data. Uses an external api ("https://reqres.in/") to validate user data agains a mock back-end.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- ## Routes
+    - /home and / both render the HomeComponent
+    - /login render the LoginComponent
 
-## Running end-to-end tests
+- ## Guards
+    - AuthGuard: Using the UserService, checks if client has a valid token on the localStorage. If it dosn't, redirects to /login
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+# Dependencies
 
-## Further help
+- Angular 7
+- Bootstrap 4 (uses CDN)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# How to use
+- Clone or download the repo
+- `cd` into the folder
+- `ng serve` to start developing on port 4200
+- `npm run build` when ready to deploy
+
+# Improvements
+- Add automatic testing
+- Add more views
+- Check token signature when login()
+- etc...
+
+# License
+
+GNU general license.
